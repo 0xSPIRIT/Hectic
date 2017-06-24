@@ -18,9 +18,12 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void create() {
+		// DO THESE BEFORE THE MAIN INITIALIZATION OF THE GAME.
 		sb = new SpriteBatch();
-		StateManager.setCurrentState(new GameState());
+		Textures.INIT_ALL();
+
 		lastTime = System.currentTimeMillis();
+		StateManager.setCurrentState(new GameState());
 	}
 
 	@Override
@@ -41,6 +44,7 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void dispose() {
 		sb.dispose();
+		Textures.DISPOSE_ALL();
 		StateManager.getCurrentState().dispose();
 	}
 }

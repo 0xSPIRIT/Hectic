@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public abstract class State {
 
-	private OrthographicCamera camera;
+	protected OrthographicCamera camera;
 	
 	protected void setUp(int screenWidth, int screenHeight) {
 		camera = new OrthographicCamera();
