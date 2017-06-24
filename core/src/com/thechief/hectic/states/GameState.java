@@ -1,5 +1,7 @@
 package com.thechief.hectic.states;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -8,6 +10,8 @@ import com.thechief.hectic.entities.Entity;
 import com.thechief.hectic.entities.Player;
 
 public class GameState extends State {
+	
+	public static final float GRAVITY = -25f;
 
 	private Player player;
 	private Array<Entity> entities = new Array<Entity>();
@@ -15,7 +19,7 @@ public class GameState extends State {
 	@Override
 	public void create() {
 		setUp(Main.WIDTH, Main.HEIGHT);
-		player = new Player(new Vector2(camera.position.x - 32, 0), 64, 64);
+		player = new Player(new Vector2(camera.position.x - 32, 128), 64, 64);
 		entities.add(player);
 	}
 
@@ -23,6 +27,10 @@ public class GameState extends State {
 	public void update(float dt) {
 		for (Entity e : entities) {
 			e.update(dt);
+		}
+		
+		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+			StateManager.setCurrentState(new GameState());
 		}
 	}
 
