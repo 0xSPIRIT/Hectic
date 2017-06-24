@@ -2,6 +2,7 @@ package com.thechief.hectic.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class Entity {
@@ -31,6 +32,14 @@ public abstract class Entity {
 	
 	// GETTERS AND SETTERS:
 
+	public boolean isColliding(Entity e) {
+		return getBounds().overlaps(e.getBounds());
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(pos.x, pos.y, width, height);
+	}
+	
 	public Vector2 getPos() {
 		return pos;
 	}
