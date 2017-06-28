@@ -13,6 +13,7 @@ public class Textures {
 	public static Texture bullet;
 	public static Texture enemy1, enemy2;
 	public static Texture explosion1, explosion2, explosion3, explosion4;
+	public static Texture health;
 	
 	public static final void INIT_ALL() {
 		// Y U USE JPG 4 BREH
@@ -33,6 +34,8 @@ public class Textures {
 		explosion2 = new Texture("explosion2.png");
 		explosion3 = new Texture("explosion3.png");
 		explosion4 = new Texture("explosion4.png");
+	
+		health = new Texture("health.png");
 	}
 	
 	public static final void DISPOSE_ALL() {
@@ -48,6 +51,7 @@ public class Textures {
 		explosion2.dispose();
 		explosion3.dispose();
 		explosion4.dispose();
+		health.dispose();
 	}
 	
 }

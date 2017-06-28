@@ -9,6 +9,7 @@ import com.thechief.hectic.entities.Enemy;
 import com.thechief.hectic.entities.Entity;
 import com.thechief.hectic.entities.Player;
 import com.thechief.hectic.entities.Spawner;
+import com.thechief.hectic.entity.pickup.PickupSpawner;
 import com.thechief.hectic.graphics.ScoreBoard;
 
 public class GameState extends State {
@@ -21,15 +22,16 @@ public class GameState extends State {
 
 	private Player player;
 	private Spawner spawner;
+	private PickupSpawner ps;
 	
 	private ScoreBoard scoreBoard;
-
+	
 	public Array<Entity> entities = new Array<Entity>();
 	public Array<Enemy> enemies = new Array<Enemy>();
 	
 	@Override
 	public void create() {
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClearColor(0.7f, 0.7f, 0.7f, 1);
 		setUp(Main.WIDTH, Main.HEIGHT);
 		player = new Player(this, new Vector2(camera.position.x - 32, 128), 64, 64);
 		entities.add(player);
@@ -37,6 +39,8 @@ public class GameState extends State {
 		entities.add(spawner);
 		scoreBoard = new ScoreBoard(camera, new Vector2(20, Main.HEIGHT - 20));
 		entities.add(scoreBoard);
+		ps = new PickupSpawner(this);
+		entities.add(ps);
 	}
 
 	@Override

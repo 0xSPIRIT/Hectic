@@ -34,12 +34,12 @@ public class Player extends Entity {
 	public Player(GameState gs, Vector2 pos, int width, int height) {
 		super(Textures.player1, pos, width, height);
 		this.gs = gs;
-		
+
 		textures = new Texture[2];
 		textures[0] = Textures.player1;
 		textures[1] = Textures.player2;
 		anim = new Animation(this, textures, 10);
-		
+
 		spd = 500;
 	}
 
@@ -119,6 +119,23 @@ public class Player extends Entity {
 
 	public float getSpeed() {
 		return spd;
+	}
+
+	public float getMaxHp() {
+		return maxHp;
+	}
+
+	public void setMaxHp(float maxHp) {
+		this.maxHp = maxHp;
+	}
+
+	public float getHp() {
+		return hp;
+	}
+
+	public void setHp(float hp) {
+		this.hp = hp;
+		this.hp = MathUtils.clamp(this.hp, 0, maxHp);
 	}
 
 }
