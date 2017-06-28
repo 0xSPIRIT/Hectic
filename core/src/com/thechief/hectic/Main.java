@@ -10,16 +10,17 @@ import com.thechief.hectic.states.StateManager;
 public class Main extends ApplicationAdapter {
 
 	public static final int WIDTH = 900, HEIGHT = 900 / 16 * 9;
-	public static final String TITLE = "As You Can See, This Game Is Very Hectic";
+	public static final String TITLE = "As You Can See, This Game Is Very Hectic : v0.9 Alpha";
 
 	private SpriteBatch sb;
 
 	private long lastTime;
-
+	
 	@Override
 	public void create() {
 		// DO THESE BEFORE THE MAIN INITIALIZATION OF THE GAME.
 		sb = new SpriteBatch();
+		Fonts.INIT_FONTS();
 		Textures.INIT_ALL();
 
 		lastTime = System.currentTimeMillis();
@@ -28,7 +29,6 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void render() {
-		Gdx.gl.glClearColor(1f, 1f, 1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		// Updating the current state
@@ -45,6 +45,8 @@ public class Main extends ApplicationAdapter {
 	public void dispose() {
 		sb.dispose();
 		Textures.DISPOSE_ALL();
+		Fonts.DISPOSE_FONTS();
 		StateManager.getCurrentState().dispose();
 	}
+	
 }

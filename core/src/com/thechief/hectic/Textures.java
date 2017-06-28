@@ -6,6 +6,7 @@ public class Textures {
 
 	private Textures() {}
 	
+	public static Texture test;
 	public static Texture player1, player2;
 	public static Texture spawner;
 	public static Texture gun1;
@@ -14,6 +15,9 @@ public class Textures {
 	public static Texture explosion1, explosion2, explosion3, explosion4;
 	
 	public static final void INIT_ALL() {
+		// Y U USE JPG 4 BREH
+		test = new Texture("badlogic.jpg");
+		
 		player1 = new Texture("player1.png");
 		player2 = new Texture("player2.png");
 		
@@ -32,6 +36,7 @@ public class Textures {
 	}
 	
 	public static final void DISPOSE_ALL() {
+		test.dispose();
 		player1.dispose();
 		player2.dispose();
 		enemy1.dispose();

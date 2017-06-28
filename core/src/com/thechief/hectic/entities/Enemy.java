@@ -2,8 +2,8 @@ package com.thechief.hectic.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.thechief.hectic.Main;
 import com.thechief.hectic.Textures;
 import com.thechief.hectic.graphics.Animation;
 import com.thechief.hectic.states.GameState;
@@ -45,5 +45,5 @@ public class Enemy extends Entity {
 	public void render(SpriteBatch sb) {
 		anim.render(sb);
 	}
-
+	
 }

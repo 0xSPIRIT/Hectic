@@ -32,12 +32,16 @@ public abstract class Entity {
 	
 	// GETTERS AND SETTERS:
 
-	public boolean isColliding(Entity e) {
-		return getBounds().overlaps(e.getBounds());
-	}
+	public double dist(Vector2 object1, Vector2 object2){
+        return Math.sqrt(Math.pow((object2.x - object1.x), 2) + Math.pow((object2.y - object1.y), 2));
+    }
 	
 	public Rectangle getBounds() {
 		return new Rectangle(pos.x, pos.y, width, height);
+	}
+	
+	public boolean isColliding(Entity e) {
+		return getBounds().overlaps(e.getBounds());
 	}
 	
 	public Vector2 getPos() {

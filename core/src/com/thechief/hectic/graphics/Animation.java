@@ -22,7 +22,7 @@ public class Animation {
 	}
 	
 	public Animation(Entity parent, Texture[] textures, int interval) {
-		this(parent, textures, interval, textures[0].getWidth(), textures[0].getHeight());
+		this(parent, textures, interval, parent.getWidth(), parent.getHeight());
 	}
 	
 	public void update() {

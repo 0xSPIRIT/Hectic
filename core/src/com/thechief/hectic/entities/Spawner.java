@@ -9,7 +9,7 @@ import com.thechief.hectic.states.GameState;
 public class Spawner extends Entity {
 
 	private int time = 0;
-	private int createInterval = 15;
+	private float createInterval = 15;
 	private GameState gs;
 	
 	public Spawner(GameState gs, Vector2 pos, int width, int height) {
@@ -20,13 +20,12 @@ public class Spawner extends Entity {
 	@Override
 	public void update(float dt) {
 		time++;
-		if (time % 15 == 0) {
-			pos.x = MathUtils.random(0, Main.WIDTH);
-		}
 		if (time % createInterval == 0) {
+			pos.x = MathUtils.random(0, Main.WIDTH);
 			gs.enemies.add(new Enemy(gs, new Vector2(pos.x, pos.y), 64, 64));
 			gs.entities.add(gs.enemies.get(gs.enemies.size - 1));
 		}
+		gs.getPlayer().setSpeed(gs.getPlayer().getSpeed() + 0.01f);
 	}
 
 }

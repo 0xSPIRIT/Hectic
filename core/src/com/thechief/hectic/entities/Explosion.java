@@ -25,6 +25,7 @@ public class Explosion extends Entity {
 
 	@Override
 	public void update(float dt) {
+		gs.shakeScreen(20, 0.9f);
 		anim.update();
 		if (anim.index == 3) {
 			gs.entities.removeValue(this, false);
