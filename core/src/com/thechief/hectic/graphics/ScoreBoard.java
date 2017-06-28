@@ -8,6 +8,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Base64Coder;
 import com.thechief.hectic.Fonts;
 import com.thechief.hectic.Textures;
 import com.thechief.hectic.entities.Entity;
@@ -23,7 +24,9 @@ public class ScoreBoard extends Entity {
 	public ScoreBoard(OrthographicCamera camera, Vector2 pos) {
 		super(Textures.test, pos);
 		this.camera = camera;
+		
 		highScoreFile = Gdx.files.local("highscore.txt");
+
 		if (HIGH_SCORE > Integer.parseInt(highScoreFile.readString()) || highScoreFile.readString().equals("-1")) {
 			highScoreFile.writeString(Integer.toString(HIGH_SCORE), false);
 		} else if (HIGH_SCORE < Integer.parseInt(highScoreFile.readString())) {
