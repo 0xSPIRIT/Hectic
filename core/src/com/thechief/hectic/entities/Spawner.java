@@ -13,12 +13,9 @@ public class Spawner extends Entity {
 	private float meteorInterval = 240;
 	private GameState gs;
 
-	private Vector2 startPos;
-	
 	public Spawner(GameState gs, Vector2 pos, int width, int height) {
 		super(Textures.spawner, pos, width, height);
 		this.gs = gs;
-		startPos = pos;
 	}
 
 	@Override

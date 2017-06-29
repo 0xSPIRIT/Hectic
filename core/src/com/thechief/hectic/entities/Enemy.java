@@ -39,7 +39,7 @@ public class Enemy extends Entity {
 		pos.y += velY;
 
 		if (pos.y <= 0) {
-			Explosion explosion = new Explosion(gs, new Vector2(pos.x + 16, pos.y), 64, 64);
+			Explosion explosion = new Explosion(gs, new Vector2(pos.x + 16, pos.y), 128, 128);
 			gs.entities.add(explosion);
 			gs.entities.removeValue(this, false);
 		}

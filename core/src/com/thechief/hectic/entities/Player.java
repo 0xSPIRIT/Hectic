@@ -22,7 +22,7 @@ public class Player extends Entity {
 	private Animation anim;
 
 	private float spd;
-
+	
 	// Jumping
 	private float jumpSpd = 690;
 	private float velY = 0;
@@ -45,14 +45,18 @@ public class Player extends Entity {
 
 	@Override
 	public void update(float dt) {
-		// Animating the texture
-		anim.update();
+		// Animating the texture only if the game is not paused
+		if (!GameState.PAUSED) {
+			anim.update();
+		}
 
 		// Movement Code
 		if (Gdx.input.isKeyPressed(Keys.D) || Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			GameState.PAUSED = false;
 			pos.x += spd * dt;
 		}
 		if (Gdx.input.isKeyPressed(Keys.A) || Gdx.input.isKeyPressed(Keys.LEFT)) {
+			GameState.PAUSED = false;
 			pos.x -= spd * dt;
 		}
 
@@ -69,11 +73,13 @@ public class Player extends Entity {
 
 		// Jumping
 		if (Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.SPACE) || Gdx.input.isKeyPressed(Keys.UP)) {
+			GameState.PAUSED = false;
 			if (pos.y == 0) {
 				velY = jumpSpd * dt;
 			}
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.S) || Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+			GameState.PAUSED = false;
 			if (pos.y > 0) {
 				velY -= (jumpSpd * 1.4f) * dt;
 			}
@@ -88,6 +94,8 @@ public class Player extends Entity {
 					hp--;
 					gs.enemies.removeValue(en, false);
 					gs.entities.removeValue(en, false);
+					Explosion ex = new Explosion(gs, new Vector2(pos.x - 32, pos.y - 32), 128, 128);
+					gs.entities.add(ex);
 					if (hp <= 0) {
 						GameState.DIED = true;
 					}

@@ -64,7 +64,7 @@ public class Meteorite extends Entity {
 		}
 
 		if (pos.y <= 0) {
-			Explosion ex = new Explosion(gs, new Vector2(pos.x, pos.y), 64, 64);
+			Explosion ex = new Explosion(gs, new Vector2(pos.x, pos.y), 128, 128);
 			gs.entities.add(ex);
 			gs.meteors.removeValue(this, false);
 			gs.entities.removeValue(this, false);

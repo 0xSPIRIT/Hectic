@@ -23,7 +23,7 @@ public class Bullet extends Entity {
 			if (isColliding(e)) {
 				gs.enemies.removeValue(e, true);
 				gs.entities.removeValue(e, false);
-				Explosion explosion = new Explosion(gs, new Vector2(pos.x, pos.y), 64, 64);
+				Explosion explosion = new Explosion(gs, new Vector2(pos.x, pos.y), 128, 128);
 				gs.entities.add(explosion);
 				gs.entities.removeValue(this, false);
 			}
