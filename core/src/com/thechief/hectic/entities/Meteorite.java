@@ -4,9 +4,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.thechief.hectic.Main;
 import com.thechief.hectic.Textures;
 import com.thechief.hectic.graphics.Animation;
 import com.thechief.hectic.graphics.Particle;
+import com.thechief.hectic.graphics.ScoreBoard;
 import com.thechief.hectic.states.GameState;
 
 public class Meteorite extends Entity {
@@ -20,23 +22,40 @@ public class Meteorite extends Entity {
 
 	private long lastTime;
 
-	public Meteorite(GameState gs, Vector2 pos, int width, int height, float vx) {
+	public Meteorite(GameState gs, Vector2 pos, int width, int height, float vx, float vy) {
 		super(Textures.meteor1, pos, width, height);
 		textures = new Texture[2];
 		textures[0] = Textures.meteor1;
 		textures[1] = Textures.meteor2;
 		anim = new Animation(this, textures, 10);
 		velX = vx;
-		velY = -5f;
+		velY = vy;
 		this.gs = gs;
 		lastTime = System.currentTimeMillis();
 	}
 
 	@Override
 	public void update(float dt) {
-		gs.shakeScreen(50);
-
 		anim.update();
+		for (int i = 0; i < gs.entities.size; i++) {
+			Entity e = gs.entities.get(i);
+			if (e instanceof ScoreBoard || e instanceof Meteorite) continue;
+			if (e instanceof Spawner) {
+				e.vibrateX(-5, 5);
+				continue;
+			}
+			e.vibrate(-5, 5);
+		}
+		vibrateX(-10, 10);
+		vibrateY(-8, 4);
+		pos.x = MathUtils.clamp(pos.x, 0, Main.WIDTH - width);
+		
+		if (pos.x >= Main.WIDTH - width || pos.x <= 0) {
+			velX *= -1;
+		}
+		if (pos.y <= height) {
+			velY *= 1.5;
+		}
 
 		// 90 milliseconds
 		if (System.currentTimeMillis() - lastTime > 50) {

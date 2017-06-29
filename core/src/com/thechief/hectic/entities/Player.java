@@ -80,14 +80,17 @@ public class Player extends Entity {
 		}
 
 		// checking for enemy collisions
-		for (int i = 0; i < gs.enemies.size; i++) {
-			Enemy e = gs.enemies.get(i);
-			if (isColliding(e)) {
-				hp--;
-				gs.enemies.removeValue(e, false);
-				gs.entities.removeValue(e, false);
-				if (hp <= 0) {
-					GameState.DIED = true;
+		for (int i = 0; i < gs.entities.size; i++) {
+			Entity e = gs.entities.get(i);
+			if (e instanceof Enemy) {
+				Enemy en = (Enemy) e;
+				if (isColliding(en)) {
+					hp--;
+					gs.enemies.removeValue(en, false);
+					gs.entities.removeValue(en, false);
+					if (hp <= 0) {
+						GameState.DIED = true;
+					}
 				}
 			}
 		}
@@ -95,8 +98,12 @@ public class Player extends Entity {
 		for (int i = 0; i < gs.meteors.size; i++) {
 			Meteorite m = gs.meteors.get(i);
 			if (isColliding(m)) {
-				hp = 0;
-				GameState.DIED = true;
+				hp -= maxHp / 2;
+				gs.meteors.removeValue(m, false);
+				gs.entities.removeValue(m, false);
+				if (hp <= 0) {
+					GameState.DIED = true;
+				}
 			}
 		}
 

@@ -2,6 +2,7 @@ package com.thechief.hectic.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -28,6 +29,21 @@ public abstract class Entity {
 	
 	public void render(SpriteBatch sb) {
 		sb.draw(texture, pos.x, pos.y, width, height);
+	}
+	
+	float amp = -99999;
+	
+	public void vibrate(float min, float max) {
+		vibrateX(min, max);
+		vibrateY(min, max);
+	}
+	
+	public void vibrateX(float min, float max) {
+		pos.x += MathUtils.random(min, max);
+	}
+
+	public void vibrateY(float min, float max) {
+		pos.y += MathUtils.random(min, max);
 	}
 	
 	// GETTERS AND SETTERS:
