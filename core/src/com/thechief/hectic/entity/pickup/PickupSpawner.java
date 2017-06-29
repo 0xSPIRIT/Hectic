@@ -21,7 +21,8 @@ public class PickupSpawner extends Entity {
 
 	@Override
 	public void update(float dt) {
-		if (System.currentTimeMillis() - lastTime > 3000) {
+		// 10 seconds = 10000
+		if (System.currentTimeMillis() - lastTime > 10000) {
 			gs.entities.add(new Health(3, new Vector2(MathUtils.random(Main.WIDTH), MathUtils.random((int) (Main.HEIGHT / 2.5))), gs, 48, 48));
 			lastTime = System.currentTimeMillis();
 		}

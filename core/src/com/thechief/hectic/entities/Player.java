@@ -79,17 +79,9 @@ public class Player extends Entity {
 			}
 		}
 
-		// Shooting
-		if (Gdx.input.isKeyJustPressed(Keys.ENTER) || Gdx.input.isKeyJustPressed(Keys.Z)) {
-			gs.entities.add(new Bullet(gs, new Vector2(pos.x + width / 2 - 8, pos.y + height), 16, 16));
-		}
-
-		// Checking for collisions with enemies for hp purposes
-		for (int i = 0; i < gs.entities.size; i++) {
-			Entity en = gs.entities.get(i);
-			if (!(en instanceof Enemy))
-				continue;
-			Enemy e = (Enemy) gs.entities.get(i);
+		// checking for enemy collisions
+		for (int i = 0; i < gs.enemies.size; i++) {
+			Enemy e = gs.enemies.get(i);
 			if (isColliding(e)) {
 				hp--;
 				gs.enemies.removeValue(e, false);
@@ -100,6 +92,14 @@ public class Player extends Entity {
 			}
 		}
 
+		for (int i = 0; i < gs.meteors.size; i++) {
+			Meteorite m = gs.meteors.get(i);
+			if (isColliding(m)) {
+				hp = 0;
+				GameState.DIED = true;
+			}
+		}
+
 		// Implementing the velocity to the actual position of the player
 		pos.y += velY;
 	}
@@ -107,7 +107,6 @@ public class Player extends Entity {
 	@Override
 	public void render(SpriteBatch sb) {
 		anim.render(sb);
-		sb.draw(Textures.gun1, pos.x + (width / 2) - 16, pos.y + height, 32, 64);
 
 		Fonts.calibri.setColor(Color.BLACK);
 		Fonts.calibri.draw(sb, "HP: " + hp + " / " + maxHp, 20, 30);

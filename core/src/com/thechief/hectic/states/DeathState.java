@@ -41,8 +41,8 @@ public class DeathState extends State {
 		if (time % 30 == 0)
 			Gdx.gl.glClearColor(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1);
 		Fonts.calibri.setColor(Color.WHITE);
-		Fonts.calibri.draw(sb, "(place odd quote from a person you have never heard of before.)", camera.position.x / 2 - 100, Main.HEIGHT - 50);
-		Fonts.calibri.draw(sb, "     SCORE: " + score + "\nHIGH SCORE: " + highScore, camera.position.x - 100, camera.position.y);
+		Fonts.calibri.draw(sb, "(place here an odd quote from a person you have never heard of before.)", camera.position.x / 2 - 125, Main.HEIGHT - 50);
+		Fonts.calibri.draw(sb, "     SCORE: " + score + "\nHIGH SCORE: " + highScore, camera.position.x - 105, camera.position.y);
 		Fonts.calibri.setColor(Color.BLACK);
 		sb.end();
 	}

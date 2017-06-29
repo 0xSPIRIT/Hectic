@@ -22,6 +22,11 @@ public class Enemy extends Entity {
 		anim = new Animation(this, textures, 8, width, height);
 		velY = 10f;
 	}
+	
+	public Enemy(GameState gs, Vector2 pos, int width, int height, float velY) {
+		this(gs, pos, width, height);
+		this.velY = velY;
+	}
 
 	@Override
 	public void update(float dt) {

@@ -1,5 +1,6 @@
 package com.thechief.hectic.entity.pickup;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.hectic.Textures;
 import com.thechief.hectic.states.GameState;
@@ -24,10 +25,10 @@ public class Health extends Pickup {
 			gs.getPlayer().setHp(gs.getPlayer().getHp() + addHealth);
 			gs.entities.removeValue(this, false);
 		}
-		if (System.currentTimeMillis() - lastTime > 2500) {
+		if (System.currentTimeMillis() - lastTime > 1500) {
 			gs.entities.removeValue(this, false);
 			lastTime = System.currentTimeMillis();
 		}
 	}
-
+	
 }

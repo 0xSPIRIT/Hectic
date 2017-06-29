@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.thechief.hectic.Main;
 import com.thechief.hectic.entities.Enemy;
 import com.thechief.hectic.entities.Entity;
+import com.thechief.hectic.entities.Meteorite;
 import com.thechief.hectic.entities.Player;
 import com.thechief.hectic.entities.Spawner;
 import com.thechief.hectic.entity.pickup.PickupSpawner;
@@ -28,10 +29,11 @@ public class GameState extends State {
 	
 	public Array<Entity> entities = new Array<Entity>();
 	public Array<Enemy> enemies = new Array<Enemy>();
+	public Array<Meteorite> meteors = new Array<Meteorite>();
 	
 	@Override
 	public void create() {
-		Gdx.gl.glClearColor(0.7f, 0.7f, 0.7f, 1);
+		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
 		setUp(Main.WIDTH, Main.HEIGHT);
 		player = new Player(this, new Vector2(camera.position.x - 32, 128), 64, 64);
 		entities.add(player);
@@ -48,7 +50,6 @@ public class GameState extends State {
 		for (Entity e : entities) {
 			e.update(dt);
 		}
-		System.out.println(camera.position.x);
 	}
 
 	@Override
@@ -64,6 +65,33 @@ public class GameState extends State {
 	@Override
 	public void dispose() {
 
+	}
+	
+	private int amplitude = -1;
+	private boolean finishedShake = false;
+	private float bx, by;
+	
+	public void shakeScreen(int amp) {
+		if (amplitude == -1) {
+			amplitude = amp;
+			bx = camera.position.x;
+			by = camera.position.y;
+		}
+		
+		amplitude *= 0.9;
+		
+		camera.position.x += amplitude;
+		camera.position.y += amplitude;
+
+		if (amplitude < 0.2f) {
+			finishedShake = true;
+		}
+		
+		if (finishedShake) {
+			amplitude = -1;
+			camera.position.x = bx;
+			camera.position.y = by;
+		}
 	}
 
 	public Player getPlayer() {

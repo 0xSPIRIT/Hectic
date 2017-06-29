@@ -14,6 +14,8 @@ public class Textures {
 	public static Texture enemy1, enemy2;
 	public static Texture explosion1, explosion2, explosion3, explosion4;
 	public static Texture health;
+	public static Texture meteor1, meteor2;
+	public static Texture particle;
 	
 	public static final void INIT_ALL() {
 		// Y U USE JPG 4 BREH
@@ -36,6 +38,11 @@ public class Textures {
 		explosion4 = new Texture("explosion4.png");
 	
 		health = new Texture("health.png");
+		
+		meteor1 = new Texture("meteor1.png");
+		meteor2 = new Texture("meteor2.png");
+	
+		particle = new Texture("particle.png");
 	}
 	
 	public static final void DISPOSE_ALL() {
@@ -52,6 +59,9 @@ public class Textures {
 		explosion3.dispose();
 		explosion4.dispose();
 		health.dispose();
+		meteor1.dispose();
+		meteor2.dispose();
+		particle.dispose();
 	}
 	
 }
