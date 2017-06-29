@@ -23,14 +23,6 @@ public class ScoreBoard extends Entity {
 	public ScoreBoard(OrthographicCamera camera, Vector2 pos) {
 		super(Textures.test, pos);
 		this.camera = camera;
-		
-		highScoreFile = Gdx.files.local("highscore.txt");
-
-		if (HIGH_SCORE > Integer.parseInt(highScoreFile.readString()) || highScoreFile.readString().equals("-1")) {
-			highScoreFile.writeString(Integer.toString(HIGH_SCORE), false);
-		} else if (HIGH_SCORE < Integer.parseInt(highScoreFile.readString())) {
-			HIGH_SCORE = Integer.parseInt(highScoreFile.readString());
-		}
 	}
 
 	@Override
@@ -38,7 +30,6 @@ public class ScoreBoard extends Entity {
 		SCORE++;
 		if (SCORE > HIGH_SCORE) {
 			HIGH_SCORE = SCORE;
-			highScoreFile.writeString(Integer.toString(HIGH_SCORE), false);
 		}
 		if (GameState.DIED) {
 			StateManager.setCurrentState(new DeathState(camera, SCORE, HIGH_SCORE));
