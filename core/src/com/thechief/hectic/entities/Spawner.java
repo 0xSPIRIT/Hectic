@@ -30,7 +30,6 @@ public class Spawner extends Entity {
 			gs.meteors.add(new Meteorite(gs, new Vector2(MathUtils.random(Main.WIDTH), Main.HEIGHT + 20), 64, 64, MathUtils.random(-5f, 5f), MathUtils.random(-5f, 0f)));
 			gs.entities.add(gs.meteors.get(gs.meteors.size - 1));
 		}
-		gs.getPlayer().setSpeed(gs.getPlayer().getSpeed() + 0.05f);
 	}
 
 }

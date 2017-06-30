@@ -17,7 +17,7 @@ import com.thechief.hectic.graphics.ScoreBoard;
 public class GameState extends State {
 
 	public static final float GRAVITY = -25f;
-	public static boolean PAUSED = true;
+	public static boolean PAUSED = false;
 
 	public static int SCORE = 0, HIGH_SCORE = 0;
 
