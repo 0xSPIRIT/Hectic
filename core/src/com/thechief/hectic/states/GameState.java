@@ -3,6 +3,7 @@ package com.thechief.hectic.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.hectic.Main;
@@ -33,9 +34,10 @@ public class GameState extends State {
 	public Array<Enemy> enemies = new Array<Enemy>();
 	public Array<Meteorite> meteors = new Array<Meteorite>();
 
+	private int time = 0;
+	
 	@Override
 	public void create() {
-		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
 		setUp(Main.WIDTH, Main.HEIGHT);
 		player = new Player(this, new Vector2(camera.position.x - 32, 0), 64, 64);
 		entities.add(player);
@@ -47,8 +49,18 @@ public class GameState extends State {
 		entities.add(ps);
 	}
 	
+	int between = 10;
+	
 	@Override
 	public void update(float dt) {
+		time++;
+		if (time % 600 == 0) {
+			between--;
+			between = MathUtils.clamp(between, 5, 10);
+		}
+		if (time % between == 0) {
+			Gdx.gl.glClearColor(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1f);
+		}
 		if (Gdx.input.isKeyJustPressed(Keys.E)) {
 			StateManager.setCurrentState(new ShopState(camera));
 		}

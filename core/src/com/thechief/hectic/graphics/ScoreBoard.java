@@ -3,7 +3,6 @@ package com.thechief.hectic.graphics;
 import static com.thechief.hectic.states.GameState.HIGH_SCORE;
 import static com.thechief.hectic.states.GameState.SCORE;
 
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;

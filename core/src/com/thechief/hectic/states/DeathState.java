@@ -11,13 +11,18 @@ import com.thechief.hectic.Main;
 
 public class DeathState extends State {
 
-	private int score, highScore;
+	// if you need it uncomment it
+	//private int score, highScore;
 	private int time = 0;
+
+	private CharSequence scoreString, highScoreString;
 
 	public DeathState(OrthographicCamera camera, int score, int highScore) {
 		this.camera = camera;
-		this.score = score;
-		this.highScore = highScore;
+//		this.score = score;
+//		this.highScore = highScore;
+		scoreString = "SCORE: " + score;
+		highScoreString = "\nHIGH SCORE: " + highScore;
 	}
 
 	@Override
@@ -28,12 +33,14 @@ public class DeathState extends State {
 	@Override
 	public void update(float dt) {
 		time++;
-		if (Gdx.input.isKeyJustPressed(Keys.ENTER) || Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+		if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
 			StateManager.setCurrentState(new GameState());
 			GameState.SCORE = 0;
 		}
 	}
 
+	private int r = MathUtils.random(Main.WIDTH - 256), c = MathUtils.random(Main.HEIGHT - 32);
+	
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.setProjectionMatrix(camera.combined);
@@ -41,8 +48,10 @@ public class DeathState extends State {
 		if (time % 30 == 0)
 			Gdx.gl.glClearColor(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1);
 		Fonts.calibri.setColor(Color.WHITE);
-		Fonts.calibri.draw(sb, "(place here an odd quote from a person you have never heard of before.)", camera.position.x / 2 - 125, Main.HEIGHT - 50);
-		Fonts.calibri.draw(sb, "     SCORE: " + score + "\nHIGH SCORE: " + highScore, camera.position.x - 105, camera.position.y);
+
+		Fonts.calibri.draw(sb, scoreString, r, c);
+		Fonts.calibri.draw(sb, highScoreString, r, c + 64);
+		
 		Fonts.calibri.setColor(Color.BLACK);
 		sb.end();
 	}
