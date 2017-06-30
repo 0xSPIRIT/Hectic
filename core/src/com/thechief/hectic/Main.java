@@ -4,7 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.thechief.hectic.states.GameState;
+import com.thechief.hectic.states.MenuState;
 import com.thechief.hectic.states.StateManager;
 
 public class Main extends ApplicationAdapter {
@@ -24,7 +24,7 @@ public class Main extends ApplicationAdapter {
 		Textures.INIT_ALL();
 
 		lastTime = System.currentTimeMillis();
-		StateManager.setCurrentState(new GameState());
+		StateManager.setCurrentState(new MenuState());
 	}
 
 	@Override
