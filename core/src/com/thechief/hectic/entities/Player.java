@@ -30,7 +30,12 @@ public class Player extends Entity {
 	// HEALTH
 	public float maxHp = 20;
 	public float hp = maxHp;
-
+	
+	// SpriteBatch stuff
+	private SpriteBatch sb;
+	private boolean collision = false;
+	private int time = 0;
+	
 	public Player(GameState gs, Vector2 pos, int width, int height) {
 		super(Textures.player1, pos, width, height);
 		this.gs = gs;
@@ -92,6 +97,9 @@ public class Player extends Entity {
 				Enemy en = (Enemy) e;
 				if (isColliding(en)) {
 					hp--;
+					if (sb != null) {
+						collision = true;
+					}
 					gs.enemies.removeValue(en, false);
 					gs.entities.removeValue(en, false);
 					Explosion ex = new Explosion(gs, new Vector2(pos.x - 32, pos.y - 32), 128, 128);
@@ -102,11 +110,27 @@ public class Player extends Entity {
 				}
 			}
 		}
+		
+		int delayForCollisionRed = 20;
+		
+		if (collision) {
+			if (time < delayForCollisionRed) {
+				time++;
+				sb.setColor(1, 0, 1, 1);
+			} else {
+				time = 0;
+				collision = false;
+				sb.setColor(1, 1, 1, 1);
+			}
+		}
 
 		for (int i = 0; i < gs.meteors.size; i++) {
 			Meteorite m = gs.meteors.get(i);
 			if (isColliding(m)) {
 				hp -= maxHp / 2;
+				if (sb != null) {
+					collision = true;
+				}
 				gs.meteors.removeValue(m, false);
 				gs.entities.removeValue(m, false);
 				if (hp <= 0) {
@@ -121,7 +145,16 @@ public class Player extends Entity {
 
 	@Override
 	public void render(SpriteBatch sb) {
+		if (this.sb == null) {
+			this.sb = sb;
+		}
+		if (!collision) {
+			sb.setColor(1, 1, 1, 1);
+		} else {
+			sb.setColor(1, 0, 1, 1);
+		}
 		anim.render(sb);
+		sb.setColor(1, 1, 1, 1);
 
 		Fonts.calibri.setColor(Color.BLACK);
 		Fonts.calibri.draw(sb, "HP: " + hp + " / " + maxHp, 20, 30);

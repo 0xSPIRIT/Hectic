@@ -1,6 +1,7 @@
 package com.thechief.hectic.entity.pickup;
 
 import com.badlogic.gdx.math.Vector2;
+import com.thechief.hectic.Sounds;
 import com.thechief.hectic.Textures;
 import com.thechief.hectic.states.GameState;
 
@@ -21,6 +22,7 @@ public class Health extends Pickup {
 	@Override
 	public void update(float dt) {
 		if (isColliding(gs.getPlayer())) {
+			Sounds.healthPickup.play();
 			gs.getPlayer().setHp(gs.getPlayer().getHp() + addHealth);
 			gs.entities.removeValue(this, false);
 		}

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.hectic.Main;
+import com.thechief.hectic.Sounds;
 import com.thechief.hectic.Textures;
 import com.thechief.hectic.graphics.Animation;
 import com.thechief.hectic.graphics.Particle;
@@ -32,6 +33,7 @@ public class Meteorite extends Entity {
 		velY = vy;
 		this.gs = gs;
 		lastTime = System.currentTimeMillis();
+		Sounds.meteorGoingDown.play(0.6f);
 	}
 
 	@Override
@@ -65,6 +67,7 @@ public class Meteorite extends Entity {
 
 		if (pos.y <= 0) {
 			Explosion ex = new Explosion(gs, new Vector2(pos.x, pos.y), 128, 128);
+			Sounds.meteorHitGround.play(2f);
 			gs.entities.add(ex);
 			gs.meteors.removeValue(this, false);
 			gs.entities.removeValue(this, false);

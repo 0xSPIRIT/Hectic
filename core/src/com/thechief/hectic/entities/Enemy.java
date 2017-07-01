@@ -2,7 +2,9 @@ package com.thechief.hectic.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.thechief.hectic.Sounds;
 import com.thechief.hectic.Textures;
 import com.thechief.hectic.graphics.Animation;
 import com.thechief.hectic.states.GameState;
@@ -40,6 +42,11 @@ public class Enemy extends Entity {
 
 		if (pos.y <= 0) {
 			Explosion explosion = new Explosion(gs, new Vector2(pos.x + 16, pos.y), 128, 128);
+			if (MathUtils.randomBoolean()) {
+				Sounds.enemyHitGround.play(MathUtils.random(0.2f, 0.8f));
+			} else {
+				Sounds.enemyHitGround1.play(MathUtils.random(0.2f, 0.8f));
+			}
 			gs.entities.add(explosion);
 			gs.entities.removeValue(this, false);
 		}

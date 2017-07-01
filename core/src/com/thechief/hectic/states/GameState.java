@@ -20,6 +20,8 @@ public class GameState extends State {
 	public static final float GRAVITY = -25f;
 	public static boolean PAUSED = false;
 
+	public static boolean EPILEPSY = true;
+
 	public static int SCORE = 0, HIGH_SCORE = 0;
 
 	public static boolean DIED = false;
@@ -35,7 +37,7 @@ public class GameState extends State {
 	public Array<Meteorite> meteors = new Array<Meteorite>();
 
 	private int time = 0;
-	
+
 	@Override
 	public void create() {
 		setUp(Main.WIDTH, Main.HEIGHT);
@@ -48,15 +50,17 @@ public class GameState extends State {
 		ps = new PickupSpawner(this);
 		entities.add(ps);
 	}
-	
+
 	int between = 10;
-	
+
 	@Override
 	public void update(float dt) {
-		time++;
-		if (time % 600 == 0) {
-			between--;
-			between = MathUtils.clamp(between, 5, 10);
+		if (EPILEPSY) {
+			time++;
+			if (time % 600 == 0) {
+				between--;
+				between = MathUtils.clamp(between, 5, 10);
+			}
 		}
 		if (time % between == 0) {
 			Gdx.gl.glClearColor(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1f);

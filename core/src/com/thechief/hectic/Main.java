@@ -22,6 +22,7 @@ public class Main extends ApplicationAdapter {
 		sb = new SpriteBatch();
 		Fonts.INIT_FONTS();
 		Textures.INIT_ALL();
+		Sounds.INIT();
 
 		lastTime = System.currentTimeMillis();
 		StateManager.setCurrentState(new MenuState());
@@ -46,6 +47,7 @@ public class Main extends ApplicationAdapter {
 	public void dispose() {
 		sb.dispose();
 		Textures.DISPOSE_ALL();
+		Sounds.DISPOSE();
 		Fonts.DISPOSE_FONTS();
 		StateManager.getCurrentState().dispose();
 	}
