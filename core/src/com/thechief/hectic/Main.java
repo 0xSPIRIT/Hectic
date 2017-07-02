@@ -20,14 +20,16 @@ public class Main extends ApplicationAdapter {
 	public void create() {
 		// DO THESE BEFORE THE MAIN INITIALIZATION OF THE GAME.
 		sb = new SpriteBatch();
+		Gdx.graphics.setTitle("LOADING GAME... (Please Wait!!!)");
 		Fonts.INIT_FONTS();
 		Textures.INIT_ALL();
 		Sounds.INIT();
 
 		lastTime = System.currentTimeMillis();
 		StateManager.setCurrentState(new MenuState());
-
+		
 		Sounds.music.loop();
+		Gdx.graphics.setTitle(TITLE);
 	}
 
 	@Override
