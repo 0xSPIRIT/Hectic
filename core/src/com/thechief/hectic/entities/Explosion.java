@@ -2,7 +2,6 @@ package com.thechief.hectic.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.thechief.hectic.Sounds;
 import com.thechief.hectic.Textures;
 import com.thechief.hectic.graphics.Animation;
 import com.thechief.hectic.states.GameState;

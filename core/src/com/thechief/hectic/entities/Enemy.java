@@ -43,9 +43,9 @@ public class Enemy extends Entity {
 		if (pos.y <= 0) {
 			Explosion explosion = new Explosion(gs, new Vector2(pos.x + 16, pos.y), 128, 128);
 			if (MathUtils.randomBoolean()) {
-				Sounds.enemyHitGround.play(MathUtils.random(0.2f, 0.8f));
+				Sounds.enemyHitGround.play(0.06f);
 			} else {
-				Sounds.enemyHitGround1.play(MathUtils.random(0.2f, 0.8f));
+				Sounds.enemyHitGround1.play(0.06f);
 			}
 			gs.entities.add(explosion);
 			gs.entities.removeValue(this, false);

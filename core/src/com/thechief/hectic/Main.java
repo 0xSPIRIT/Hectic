@@ -26,6 +26,8 @@ public class Main extends ApplicationAdapter {
 
 		lastTime = System.currentTimeMillis();
 		StateManager.setCurrentState(new MenuState());
+
+		Sounds.music.loop();
 	}
 
 	@Override
