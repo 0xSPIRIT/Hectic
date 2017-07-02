@@ -33,7 +33,7 @@ public class Meteorite extends Entity {
 		velY = vy;
 		this.gs = gs;
 		lastTime = System.currentTimeMillis();
-		//Sounds.meteorGoingDown.play(0.2f);
+		Sounds.meteorGoingDown.play(0.1f);
 	}
 
 	@Override

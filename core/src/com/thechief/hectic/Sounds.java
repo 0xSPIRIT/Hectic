@@ -17,7 +17,8 @@ public class Sounds {
 		meteorGoingDown = Gdx.audio.newSound(Gdx.files.internal("meteorGoingDown.ogg"));
 		healthPickup = Gdx.audio.newSound(Gdx.files.internal("healthPickup.ogg"));
 	
-		music = Gdx.audio.newSound(Gdx.files.internal("music.ogg"));
+		// Using mp3 instead of ogg because the file size is lower.
+		music = Gdx.audio.newSound(Gdx.files.internal("music.mp3"));
 	}
 	
 	public static final void DISPOSE() {
