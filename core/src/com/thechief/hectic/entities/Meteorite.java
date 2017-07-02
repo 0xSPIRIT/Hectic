@@ -41,7 +41,7 @@ public class Meteorite extends Entity {
 		anim.update();
 		for (int i = 0; i < gs.entities.size; i++) {
 			Entity e = gs.entities.get(i);
-			if (e instanceof ScoreBoard || e instanceof Meteorite) continue;
+			if (e instanceof Meteorite) continue;
 			if (e instanceof Spawner) {
 				e.vibrateX(-5, 5);
 				continue;

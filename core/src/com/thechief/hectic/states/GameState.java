@@ -46,7 +46,6 @@ public class GameState extends State {
 		spawner = new Spawner(this, new Vector2(camera.position.x - 32, Main.HEIGHT - 156), 64, 64);
 		entities.add(spawner);
 		scoreBoard = new ScoreBoard(camera, new Vector2(20, Main.HEIGHT - 20));
-		entities.add(scoreBoard);
 		ps = new PickupSpawner(this);
 		entities.add(ps);
 	}
@@ -75,6 +74,7 @@ public class GameState extends State {
 		for (Entity e : entities) {
 			e.update(dt);
 		}
+		scoreBoard.update(dt);
 	}
 
 	@Override
@@ -84,6 +84,7 @@ public class GameState extends State {
 		for (Entity e : entities) {
 			e.render(sb);
 		}
+		scoreBoard.render(sb);
 		sb.end();
 	}
 
