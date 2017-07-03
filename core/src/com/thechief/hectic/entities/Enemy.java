@@ -23,6 +23,7 @@ public class Enemy extends Entity {
 		textures[1] = Textures.enemy2;
 		anim = new Animation(this, textures, 8, width, height);
 		velY = 10f;
+		Sounds.meteorGoingDown.play(0.03f);
 	}
 	
 	public Enemy(GameState gs, Vector2 pos, int width, int height, float velY) {

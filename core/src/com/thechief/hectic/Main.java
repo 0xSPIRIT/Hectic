@@ -10,7 +10,7 @@ import com.thechief.hectic.states.StateManager;
 public class Main extends ApplicationAdapter {
 
 	public static final int WIDTH = 900, HEIGHT = 900 / 16 * 9;
-	public static final String TITLE = "As You Can See, This Game Is Very Hectic : v0.9 Alpha";
+	public static final String TITLE = "As You Can See, This Game Is Very Hectic : v0.1.2 BETA";
 
 	private SpriteBatch sb;
 

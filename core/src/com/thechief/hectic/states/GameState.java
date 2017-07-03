@@ -1,7 +1,6 @@
 package com.thechief.hectic.states;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -63,9 +62,6 @@ public class GameState extends State {
 		}
 		if (time % between == 0) {
 			Gdx.gl.glClearColor(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1f);
-		}
-		if (Gdx.input.isKeyJustPressed(Keys.E)) {
-			StateManager.setCurrentState(new ShopState(camera));
 		}
 		if (PAUSED) {
 			player.update(dt);

@@ -1,51 +1,61 @@
 package com.thechief.hectic.states;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.MathUtils;
+import com.thechief.hectic.Fonts;
 import com.thechief.hectic.Main;
 
 public class ShopState extends State {
 
-	private ShapeRenderer sr;
+	private String shopText = "Black Market";
+
+	// This will center the text on the x axis.
+	private final float oShopX = Main.WIDTH / 2 - new GlyphLayout(Fonts.calibri, shopText).width / 2,
+						oShopY = Main.HEIGHT - 35;
+	private float shopX, shopY;
 	
-	private int padding = 15;
+	private int time = 0;
 	
 	public ShopState(OrthographicCamera camera) {
 		this.camera = camera;
 	}
-
+	
 	@Override
 	public void create() {
-		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
-		sr = new ShapeRenderer();
+		shopX = oShopX;
+		shopY = oShopY;
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		// TODO: Maybe fade in some music or something here into calming black market music. (lel)
 	}
 
 	@Override
 	public void update(float dt) {
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			StateManager.setCurrentState(new GameState());
+		time++;
+		if (time % 10 == 0) {
+			shopX = oShopX + MathUtils.random(-3, 3);
+			shopY = oShopY + MathUtils.random(-3, 3);
 		}
 	}
 
 	@Override
 	public void render(SpriteBatch sb) {
-		sr.setProjectionMatrix(camera.combined);
-		sr.begin(ShapeType.Line);
+		sb.begin();
 		
-		sr.setColor(Color.WHITE);
-		sr.rect(padding, padding, Main.WIDTH - padding, Main.HEIGHT - padding);
+		Fonts.calibri.setColor(0.65f, 0.65f, 0.65f, 1);
+		Fonts.calibri.draw(sb, shopText, shopX, shopY);
 		
-		sr.end();
+		Fonts.calibri.setColor(1f, 1f, 1f, 1f);
+		Fonts.calibri.draw(sb, shopText, shopX - 2, shopY + 2);
+
+		sb.end();
 	}
 
 	@Override
 	public void dispose() {
-		sr.dispose();
+		
 	}
 
 }

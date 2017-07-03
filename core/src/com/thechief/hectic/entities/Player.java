@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.hectic.Fonts;
 import com.thechief.hectic.Main;
+import com.thechief.hectic.Sounds;
 import com.thechief.hectic.Textures;
 import com.thechief.hectic.graphics.Animation;
 import com.thechief.hectic.states.GameState;
@@ -30,6 +31,8 @@ public class Player extends Entity {
 	// HEALTH
 	public float maxHp = 20;
 	public float hp = maxHp;
+	private float beforeHp = hp;
+	public float healthLost = 0;
 	
 	// SpriteBatch stuff
 	private SpriteBatch sb;
@@ -50,6 +53,7 @@ public class Player extends Entity {
 
 	@Override
 	public void update(float dt) {
+		beforeHp = hp;
 		// Animating the texture only if the game is not paused
 		if (!GameState.PAUSED) {
 			anim.update();
@@ -107,6 +111,11 @@ public class Player extends Entity {
 					if (hp <= 0) {
 						GameState.DIED = true;
 					}
+					if (MathUtils.randomBoolean()) {
+						Sounds.enemyHitGround.play(0.06f);
+					} else {
+						Sounds.enemyHitGround1.play(0.06f);
+					}
 				}
 			}
 		}
@@ -136,9 +145,12 @@ public class Player extends Entity {
 				if (hp <= 0) {
 					GameState.DIED = true;
 				}
+				Sounds.meteorHitGround.play(0.2f);
 			}
 		}
 
+		healthLost += hp - beforeHp;
+		
 		// Implementing the velocity to the actual position of the player
 		pos.y += velY;
 	}

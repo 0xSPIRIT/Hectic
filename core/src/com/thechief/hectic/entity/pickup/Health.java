@@ -21,6 +21,7 @@ public class Health extends Pickup {
 
 	@Override
 	public void update(float dt) {
+		bob(0.3f, 16);
 		if (isColliding(gs.getPlayer())) {
 			Sounds.healthPickup.play(0.35f);
 			gs.getPlayer().setHp(gs.getPlayer().getHp() + addHealth);

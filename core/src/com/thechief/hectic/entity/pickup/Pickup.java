@@ -18,7 +18,7 @@ public abstract class Pickup extends Entity {
 
 	public void bob(float spd, float height) {
 		time++;
-		pos.y += Math.sin(time * spd) * height;
+		pos.y += Math.sin(time * spd) * (height * spd);
 	}
 
 }
