@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.thechief.hectic.Fonts;
 import com.thechief.hectic.Main;
+import com.thechief.hectic.states.shop.ShopState;
 
 public class DeathState extends State {
 

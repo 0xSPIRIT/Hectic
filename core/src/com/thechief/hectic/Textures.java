@@ -8,6 +8,8 @@ public class Textures {
 	}
 
 	public static Texture test;
+	public static Texture red;
+	
 	public static Texture player1, player2;
 	public static Texture spawner;
 	public static Texture gun1;
@@ -19,8 +21,9 @@ public class Textures {
 	public static Texture particle;
 
 	public static final void INIT_ALL() {
-		// Y U USE JPG 4 BREH
+		// Y U USE JPG 4 BREH IT HAS TXT IN IT, LIBGDX PEEPLE!
 		test = new Texture("badlogic.jpg");
+		red = new Texture("red.png");
 
 		player1 = new Texture("player1.png");
 		player2 = new Texture("player2.png");
@@ -55,6 +58,7 @@ public class Textures {
 	}
 
 	public static final void DISPOSE_ALL() {
+		red.dispose();
 		test.dispose();
 		player1.dispose();
 		player2.dispose();
